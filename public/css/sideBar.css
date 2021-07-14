@@ -1,19 +1,39 @@
-
-#sideBar .filter-cat {
-    color: #302f2f;
-    height:auto;
-    padding:10px;
+    #sideBar .filter-cat {
+        color: #302f2f;
+        height: auto;
+        padding: 10px;
     }
-
-
-     #sideBar a {
-      padding: 5px 0;
-      display: block;
-      color: #302f2f;
-      font-size: 12px;
-      text-decoration: none;
+    
+    #sideBar .category-filter input[type=checkbox] {
+        border-color: #302f2f;
     }
-/*
+    
+    #sideBar .category-filter input[type=checkbox]:checked {
+        background-color: MediumSeaGreen;
+        border-color: MediumSeaGreen;
+        color: #fff;
+    }
+    
+    #sideBar .category-filter input[type=checkbox]:focus {
+        outline-color: transparent;
+    }
+    /* 
+        #sideBar input[type=checkbox] {
+          border: 1px solid #fff;
+          padding: 0.5em;
+          -webkit-appearance: none;
+        }
+
+ */
+    
+    #sideBar a {
+        padding: 5px 0;
+        display: block;
+        color: #302f2f;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    /*
 
     #sideBar .list-content a {
         font-family: sf pro text,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
@@ -22,69 +42,45 @@
         font-size: 1.4rem;    }
 
 */
-
-      /******* toggle div *******/
-
-      #sideBar .list-content{
-        display:none;
+    /******* toggle div *******/
+    
+    #sideBar .list-content {
+        display: none;
     }
-
-      #sideBar .click{
-        cursor:pointer;
-      }
-
-
-      /** toggled arrow **/
-    #sideBar .click i{
+    
+    #sideBar .click {
+        cursor: pointer;
+    }
+    /** toggled arrow **/
+    
+    #sideBar .click i {
         color: #73726c;
         margin-top: 5px;
         background-color: transparent;
     }
-
-
-        /*
+    /*
         #sideBar .icon-small{
             width: 2rem;
             height: 2rem;
         }
         */
-
-        #sideBar p i{
-            float:right
-        }
-        #sideBar p {
-            font-weight: bold;
-            font-size: 13px;
-
-        }
-
-
-        #sideBar .rotate {
-            transform: rotate(-180deg);
-            /*transform: rotate(180deg);*/
-            transition: .4s;
-        }
-
-        #sideBar .rotate-reset {
-            transform: rotate(0deg);
-            transition: .4s;
-        }
-
-    /****** toggle div end ******/
-
-
-      #sideBar input[type=checkbox] {
-        border: 1px solid #fff;
-        padding: 0.5em;
-        -webkit-appearance: none;
-      }
-
-      #sideBar input[type=checkbox]:checked {
-        background: url() no-repeat center center;
-        background-color: #302f2f;
-      }
-
-      #sideBar input[type=checkbox]:focus {
-        outline-color: transparent;
-      }
-
+    
+    #sideBar p i {
+        float: right
+    }
+    
+    #sideBar p {
+        font-weight: bold;
+        font-size: 13px;
+    }
+    
+    #sideBar .rotate {
+        transform: rotate(-180deg);
+        /*transform: rotate(180deg);*/
+        transition: .4s;
+    }
+    
+    #sideBar .rotate-reset {
+        transform: rotate(0deg);
+        transition: .4s;
+    }

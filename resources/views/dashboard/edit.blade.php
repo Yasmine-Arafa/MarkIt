@@ -25,7 +25,7 @@
 
         <div class="form-group">
             {{Form::label('cat','Category',['class'=> ' d-block'])}}
-            {{Form::select('cat', array('Supermarket'=> 'Supermarket', 'Fashion' => 'Fashion', 'Health & Beauty' => 'Health & Beauty', 'Phones & Tablets' => 'Phones & Tablets', 'Home & Office' => 'Home & Office', 'Books' => 'Books', 'Electronics' => 'Electronics' ),['class'=> 'form-control w-25'])}}
+            {{Form::select('cat', array('Supermarket'=> 'Supermarket', 'Fashion' => 'Fashion', 'Health & Beauty' => 'Health & Beauty', 'Phones & Tablets' => 'Phones & Tablets', 'Home & Office' => 'Home & Office', 'Books' => 'Books', 'Electronics' => 'Electronics' ), $product->cat,['class'=> 'form-control w-25'])}}
         </div>
 
 

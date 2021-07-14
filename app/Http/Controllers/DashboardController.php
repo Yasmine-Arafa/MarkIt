@@ -173,6 +173,6 @@ class DashboardController extends Controller
         $product = Product::find($id);
 
         $product -> delete();
-        return redirect('/dashboard')->with('success','Article is Deleted');
+        return redirect('/dashboard')->with('success','Product is Deleted');
     }
 }

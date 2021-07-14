@@ -2,6 +2,14 @@
 @section('content')
 
 
+ {{--If message assesst--}}
+    @isset($mssg)
+        <div class=" mx-auto w-75 h-75">
+            <h1 class="text-center text-danger">{{$mssg}}</h1> 
+        </div> 
+    @else
+
+
 <ul class="breadcrumb">
     <li><a  href="/" >Home</a> <span class="divider">/</span></li>
     <li><a href="{{route('products.index')}}">Products</a> <span class="divider">/</span></li>
@@ -10,36 +18,51 @@
 </ul>
 
 
-<div class=" flyout " style=" background-color: #fff; border-radius: 4px; " >
+<div class=" flyout pt-3 pr-4 pl-4 pb-3 w-75  mx-auto " style=" background-color: #fff; border-radius: 4px; height: 400px; " >
 
 	<!--Section: Block Content-->
 
 		<div class="container-fliud" >
 			<div class="wrapper row " >
 
+                {{-- product image --}}
 
-				<div class=" col-md-6  pt-3 pb-3 pr-2 pl-2 "  >
+				<div class="col-md-6"style="height: 360px; white-space: nowrap; text-align: center;">
+                    <span style="display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;"></span>
 
-                    <img src="/storage/images/{{$product->product_image}}" style="max-width:400px; max-height:400px; " class="m-auto d-block" alt="No Available Image">
+                    <img 
+                    src="/storage/images/{{$product->product_image}}" 
+                    style="max-width:100%; vertical-align: middle; max-height:360px; " 
+                    class="m-auto d-inline-block" 
+                    alt="No Available Image">
 
                 </div>
 
+                {{-- End product image --}}
 
-				<div class=" pt-3 pb-3 pr-3 pl-3 col-md-6  ">
 
-                    <div class="d-flex flex-row   " style="height:50px">
-                        <h3 >{{$product->name}}</h3>
+				<div class="col-md-6 pl-4">
+
+                    {{-- product name and about --}}
+
+                    <div class="d-flex flex-row" style="height:60px">
+                        <h3 >{{ \Illuminate\Support\Str::limit($product->name, 35, $end='...') }}</h3>
                     </div>
 
-                    <div class="d-flex flex-row mt-4    " style="height:130px">
-                        <p >{{$product->about}}</p>
+                    <div class=" mt-3 " style="height:150px">
+                        <h3 style="  text-transform: capitalize;
+                        color: #12263a;
+                        padding-bottom: 0.4rem;">About this item:</h3>
+                        <p class="d-block" >{{ \Illuminate\Support\Str::limit($product->about, 200, $end='  ...') }}</p>
                     </div>
 
-                    <div class="d-flex flex-row mt-3  " style="height:30px">
-                        <h4 class="text-danger font-weight-bold">current price: <span>${{$product->price}}</span></h4>
-                    </div>
+                {{-- End product name and about --}}
 
-                    <div class="d-flex flex-row mt-3    " style="height:80px">
+                {{-- product rate --}}
+
+                    <div class="d-flex flex-row mt-2" style="height:20px">
                         <div class="rating">
                             <div class="stars">
                                 <span class="fa fa-star checked"></span>
@@ -48,11 +71,16 @@
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                             </div>
-                            <span class="review-no">41 reviews</span>
-                            <p ><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-
                         </div>
                     </div>
+
+                {{-- End product rate --}}
+
+                    <div class="d-flex flex-row mt-3 " style="height:30px;">
+                        <h4 class="text-danger font-weight-bold"><span>Current Price: ${{$product->price}}</span></h4>
+                    </div>
+
+                    
 
                     @if(!Auth::guest())
 
@@ -61,8 +89,10 @@
 
                                 {!! Form::hidden('item_id', $product->id, ['class'=>'form-control']) !!}
                                 {!! Form::hidden('user_id', $user_id = Auth()->user()->id, ['class'=>'form-control'])!!}
-                                {{Form::button('Add To Cart   <i class="fas fa-shopping-cart pl-0 "></i>',['type'=>'submit','class'=> 'd-block m-auto btn btn-outline-success w-50 inline'])}}
 
+                                {{Form::number('quantity',NULL,['class'=> 'd-inline form-control','placeholder'=> 'Quantity', 'max'=>'6', 'min'=>'0', 'style'=>'width:40%;'])}}
+                                
+                                {{Form::button('Add To Cart   <i class="fas fa-shopping-cart pl-0 "></i>',['type'=>'submit','class'=> 'd-inline mx-auto btn btn-outline-success w-50 '])}}
                             {!!Form::close()!!}
                         </div>
 
@@ -72,5 +102,9 @@
 			</div>
 		</div>
     </div>
+
+    
+    @endisset
+
 @endsection
 

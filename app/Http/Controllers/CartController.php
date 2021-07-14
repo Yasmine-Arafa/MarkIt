@@ -51,42 +51,64 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
 
-        // update cart quantity and create new cart
+                    ///////// update cart quantity //////////
 
        if(Cart::where('user_id','=',$request->user_id)->where('item_id', '=', $request->item_id)->count() > 0)
        {
 
            $cart = Cart::where('user_id','=',$request->user_id)->where('item_id', '=', $request->item_id)->first();
 
-           $itemPrice = Product::find($request->item_id)->price;
+           if($cart->quantity < 6)
+           {
+               $OneItemPrice = Product::find($request->item_id)->price;
 
-            if($cart->quantity < 6)
-            {
-                $cart->quantity = $cart->quantity + 1;
-                $cart->price = $itemPrice * $cart->quantity;
-                $cart->save();
-            }
+               if(isset($request->quantity))   // from product details or cart
+               {
+                   $cart->quantity = $request->quantity;
+                   $cart->price = $OneItemPrice*($request->quantity);
+               }
+               else         //from add button
+               {
+                   $cart->quantity = $cart->quantity + 1 ;
+                   $cart->price = $cart->price+ $OneItemPrice;
+               }
+               $cart->save();
+           }
 
-            return redirect()->back();
+           return redirect()->back();
 
        }
+                            ////////// End of Update //////////
 
+                            ///////// store new cart /////////
        else
        {
+        
+            $cart = new Cart;
+            $itemPrice = Product::find($request->item_id)->price;
+            // Store in DB
+            $cart->item_id = $request->item_id;
+            $cart->user_id = $request->user_id;
 
-        $cart = new Cart;
-        $itemPrice = Product::find($request->item_id)->price;
-        // Store in DB
-        $cart->item_id = $request->item_id;
-        $cart->user_id = $request->user_id;
-        $cart->price = $itemPrice;
-        $cart->save();
+                if(isset($request->quantity))   // from product details
+                {
+                    $cart->quantity = $request->quantity;
+                    $cart->price = $itemPrice*($request->quantity);
+                }
+                else
+                {
+                    $cart->quantity = 1;
+                    $cart->price = $itemPrice;
+                }
+            $cart->save();
 
-        return redirect()->back();
+            return redirect()->back();
        }
+                            ///////// End store new cart /////////
 
 
     }
@@ -140,16 +162,6 @@ class CartController extends Controller
 
     }
 
-    public function updateqty(Request $request)
-    {
-        $id = $request->id;
-        $cart = Cart::find($id);
-        $cart->quantity = $request->quantity;
-        $cart->price = $cart->price * $request->quantity;
-        $cart->save();
 
-        return redirect('/cart');
-
-    }
 
 }

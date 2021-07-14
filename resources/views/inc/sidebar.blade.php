@@ -2,24 +2,26 @@
 {{-- hover color #094C59 --}}
 
     <div class="row pl-2">
-    <select  class="col-7 mb-3 mt-0 btn col-5 p-2 bg-transparent" style="border-color: #2896A9; color:#2896A9; font-weight: bold; font-size: 14px;">
-        <option disabled >Sort</option>
-        <option selected>Most Relevant</option>
-    </select>
-</div>
+        <select  class="col-7 mb-3 mt-0 btn col-5 p-2 bg-transparent" style="border-color: #2896A9; color:#2896A9; font-weight: bold; font-size: 14px;">
+            <option disabled >Sort</option>
+            <option selected>Most Relevant</option>
+        </select>
+    </div>
 
 
 
     <hr class="soft mt-0"/>
 
+    {!! Form::open(['route' => 'filter','method'=> 'POST']) !!}
+    
             <p id="container" class="click pl-2 mb-1 filter-cat">CATEGORY
                 <i id="toggled-icon" class="fas fa-chevron-down rotate-reset arrow"></i>
             </p>
             <div class="list-content pl-2">
-                <ul class="list-unstyled components mb-3">
+                <ul class="list-unstyled components mb-3 category-filter ">
 
                     <li class="active">
-                        <a href="{{ route('cat',['cat'=>'Supermarket'])}}"  class="w-100 " ><input type="checkbox" class="mr-1"><span  class="fas fa-store"></span> Supermarket</a>
+                        <a href="{{ route('cat',['cat'=>'Supermarket'])}}"  class="w-100 " ><input type="checkbox" class="mr-1" ><span  class="fas fa-store"></span> Supermarket</a>
                     </li>
                     <li class="active ">
                         <a href="{{ route('cat',['cat'=>'Fashion'])}}" class="w-100" ><input type="checkbox" class="mr-1"><span  class="fas fa-tshirt"></span> Fashion</a>
@@ -53,7 +55,8 @@
                     </path>
                 </svg>  --}}
                 </p>
-                <div class="list-content p-2 bg-danger">
+
+                <div class="list-content p-2">
                     <div class=" list-unstyled components row w-100 mx-auto">
                         <label class=" components pr-1 pl-1 col-6">
                             <small >From (EGP)</small>
@@ -88,38 +91,27 @@
                     </path>
                 </svg>  --}}
                 </p>
-                <div class="list-content pl-2">
+                <div class="list-content pl-2 mx-auto">
                     <ul class="list-unstyled components mb-3">
+                        <div>
+                            <span>⭐</span>
+                            <span>⭐</span>
+                            <span>⭐</span>
+                            <span>⭐</span>
+                            <span>⭐</span>
+                        </div>
 
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Supermarket'])}}"  class="w-100 " ><input type="checkbox" class="mr-1"><span  class="fas fa-store"></span> Supermarket</a>
-                        </li>
-                        <li class="active ">
-                            <a href="{{ route('cat',['cat'=>'Fashion'])}}" class="w-100" ><input type="checkbox" class="mr-1"><span  class="fas fa-tshirt"></span> Fashion</a>
-                        </li>
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Health & Beauty'])}}" class="w-100"><input type="checkbox" class="mr-1"><span  class="fas fa-mortar-pestle"></span> Health & Beauty</a>
-                        </li>
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Phones & Tablets'])}}" class="w-100"><input type="checkbox" class="mr-1"><span  class="fas fa-tshirt"></span> Phones & Tablets</a>
-                        </li>
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Home & Office'])}}" class="w-100"><input type="checkbox" class="mr-1"><span  class="fas fa-home"></span> Home & Office</a>
-                        </li>
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Books'])}}" class="w-100"><input type="checkbox" class="mr-1"><span  class="fas fa-book"></span> Books</a>
-                        </li>
-                        <li class="active">
-                            <a href="{{ route('cat',['cat'=>'Electronics'])}}" class="w-100"><input type="checkbox" class="mr-1"><span  class="fas fa-tv"></span> Electronics</a>
-                        </li>
                     </ul>
                 </div>
 
 
         <hr class="soft"/>
 
-        <a class=" mt-3 btn col-5 p-2 bg-transparent mx-auto " href="#" style="border-color: #2896A9; color:#2896A9; font-weight: bold; font-size: 14px;">Filter</a>
 
+        {{Form::submit('Filter',['class'=> 'mt-3 btn col-5 p-2 bg-transparent d-block mx-auto', 'style'=>'border-color: #2896A9; color:#2896A9; font-weight: bold; font-size: 14px;'])}}
+
+
+        {{ Form::close() }}
 
     </div>
 

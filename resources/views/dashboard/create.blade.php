@@ -10,7 +10,6 @@
 
             <div class="card-body w-100 ">
 
-
     {!! Form::open(['action' => 'DashboardController@store','method'=> 'POST', 'enctype' => 'multipart/form-data']) !!}
 
 

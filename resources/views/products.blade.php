@@ -1,23 +1,29 @@
 @extends('layouts.master')
 @section('content')
 <div id="" class=" pt-2">
-{{--
-<ul class="breadcrumb">
-    <li>
-        <h4 class="pull-right text-dark"> {{count($products)}} products are available </h4>
-    </li>
-</ul>
---}}
+    {{--
+    <ul class="breadcrumb">
+        <li>
+            <h4 class="pull-right text-dark"> {{count($products)}} products are available </h4>
+        </li>
+    </ul>
+    --}}
 	<hr class="soft mt-0"/>
 
+    {{--If message assesst--}}
+    @isset($mssg)
+        <div class=" mx-auto w-75 h-75">
+            <h1 class="text-center text-danger">{{$mssg}}</h1> 
+        </div>   
+    @else
 <div class="flyout p-2 " style=" background-color: #fff;  min-height: 384px;" >
 
         <!-------------- Start Block View  ------------------------->
-                <div class=" row">
+                <div class="row">
+
 
                     @foreach ($products as $product)
                     <div class="col-xl-3 col-lg-4 col-md-6 mb-2">
-
 
                         <!-- product card -->
                         <a href="{{ route('products.show',['product'=>$product->id])}}" class="text-decoration-none text-dark">
@@ -68,6 +74,9 @@
 
 </div>
 </div>
+
+@endisset
+
 @endsection
 
 

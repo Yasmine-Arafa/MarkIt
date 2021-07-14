@@ -23,6 +23,8 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::paginate(30);
+
+        
         return view('products',['products'=>$products]);
 
         //return view('dashboard.index')-> with ('products', $products);
@@ -44,7 +46,17 @@ class ProductsController extends Controller
     {
         $search=$request->get('search');
         $products=Product::where('name','like','%'.$search.'%')->paginate();
-        return view('products')->with('products',$products);
+
+        if($products[0] == NULL)
+           {        
+            return view('products')
+            ->with('mssg','No Products Found')
+            ->with('products',$products) ;
+           }
+        else    
+          {   
+              return view('products')->with('products',$products);
+          }
 
     }
 
@@ -103,7 +115,18 @@ class ProductsController extends Controller
         $product= Product::find($id);
 
 
-        return view('product_details')->with('product',$product);
+        if($product == NULL)
+           {        
+            return view('product_details')
+            ->with('mssg','No Product Found')
+            ->with('product',$product) ;
+           }
+        else    
+          {   
+            return view('product_details')->with('product',$product);
+        }
+
+
 
     }
 
@@ -116,7 +139,6 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product= Product::find($id);
-
 
         if(auth()->user()->id !==$product->user_id){
             return redirect('/products')->with('error','UnAuth',);
@@ -182,5 +204,11 @@ class ProductsController extends Controller
 
         $product->delete();
         return redirect('/');
+    }
+
+
+    public function filter(Request $request)
+    {
+        
     }
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
  //   return view('welcome');
 //});
 
+
 Route::get('/','ProductsController@index')->name('home');
 Route::get('/home','ProductsController@index');
 Route::get('/search','ProductsController@search')->name('search');
@@ -27,8 +28,11 @@ Route::get('/signin', function () {
         return view('login');
     })->name('signin')->middleware('guest');
 Auth::routes();
+Route::post('/products/filter','ProductsController@filter')->name('filter');
+
 Route::resource('products','ProductsController');
-Route::post('/cart/UpdateQty','CartController@updateqty')->name('UpdateQty');
+
+//Route::post('/cart/UpdateQty','CartController@updateqty')->name('UpdateQty');
 Route::resource('cart','CartController');
 //Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
